@@ -142,7 +142,6 @@ ggsave(fig_calend_time_up, filename = "Output/Fig1/PNAS_graph_rawSeries_1Col.pdf
 
 # Slight change to the fond used
 
-if(!require(matPkg)) remotes::install_github("MatthieuStigler/matPkg", upgrade = "never")
 Sys.setenv(R_GSCMD = "/usr/bin/gs")
-mat_list_dir("Output/Fig1", pattern = "\\.pdf$") %$% 
+tibble(full_path=list.files("Output/Fig2", pattern = "\\.pdf$", full.names = TRUE)) %$% 
   walk(full_path, extrafont::embed_fonts)

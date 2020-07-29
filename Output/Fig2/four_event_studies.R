@@ -10,8 +10,6 @@ my_packages <- c("tidyverse","magrittr","modeest","lfe","stargazer", "broom", "f
 sapply(my_packages, require, character.only = TRUE)
 sapply(my_packages, function(x) packageVersion(x) %>%  as.character)
 
-if(!require(matPkg)) remotes::install_github("MatthieuStigler/matPkg", upgrade = "never")
-
 map<-purrr::map 
 select<-dplyr::select
 
@@ -214,7 +212,7 @@ ggsave(fig_events_4_up_line, filename = "Output/Fig2/four_events_facet_PNAS_1col
 # Slight change to the font used
 
 Sys.setenv(R_GSCMD = "/usr/bin/gs")
-mat_list_dir("Output/Fig2", pattern = "\\.pdf$") %$% 
+tibble(full_path=list.files("Output/Fig2", pattern = "\\.pdf$", full.names = TRUE)) %$% 
   walk(full_path, extrafont::embed_fonts)
 
 
